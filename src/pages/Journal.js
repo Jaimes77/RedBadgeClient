@@ -5,4 +5,3 @@ export default class Journal extends Component {
     return <div>Journal entries go here</div>;
   }
 }
-//change
