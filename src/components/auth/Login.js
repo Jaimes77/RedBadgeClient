@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+// import { withRouter } from "react-router-dom";
+// import { browserHistory } from "react-router";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -12,6 +14,13 @@ export default class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+  // handleClick = () => browserHistory.push("/journal");
+
+  // handleClick = (event) => {
+  //   event.preventDefault();
+  //   this.props.history.push("/journal");
+  // };
 
   handleChange(event) {
     this.setState({
@@ -37,10 +46,7 @@ export default class Login extends Component {
       .then((response) => {
         response.json().then((response) => {
           console.log("response", response);
-          localStorage.setItem(
-            "login",
-            JSON.stringify({ token: response.token })
-          );
+          this.props.updateToken(response.sessionToken);
         });
       })
       .catch((error) => {
@@ -68,10 +74,13 @@ export default class Login extends Component {
             onChange={this.handleChange}
             required
           />
-
           <button type="submit">Login</button>
         </form>
       </div>
     );
   }
 }
+
+// export default withRouter(Login);
+// export default browserHistory(Login);
+export default Login;

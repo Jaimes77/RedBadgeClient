@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +15,12 @@ export default class Register extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
+
+  handleClick = () => {
+    this.props.history.push("/journal");
+  };
 
   handleChange(event) {
     this.setState({
@@ -43,10 +49,8 @@ export default class Register extends Component {
       .then((response) => {
         response.json().then((response) => {
           console.log("response", response);
-          localStorage.setItem(
-            "create",
-            JSON.stringify({ token: response.token })
-          );
+          this.props.updateToken(response.sessionToken);
+          this.handleClick();
         });
       })
       .catch((error) => {
@@ -108,3 +112,5 @@ export default class Register extends Component {
     );
   }
 }
+
+export default withRouter(Register);
