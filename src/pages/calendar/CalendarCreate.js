@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
-export default class Journal extends Component {
+export default class CalendarCreate extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      event: "",
       date: "",
-      title: "",
-      entry: "",
+      time: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,15 +24,16 @@ export default class Journal extends Component {
     event.preventDefault();
     const token = localStorage.getItem("token");
 
-    fetch(`http://localhost:3000/journal/create`, {
+    fetch(`http://localhost:3000/calendar/create`, {
       method: "POST",
       body: JSON.stringify({
-        journal: {
+        calendar: {
+          event: this.state.event,
           date: this.state.date,
-          title: this.state.title,
-          entry: this.state.entry,
+          time: this.state.time,
         },
       }),
+
       headers: new Headers({
         "Content-Type": "application/json",
         Authorization: token,
@@ -42,15 +44,24 @@ export default class Journal extends Component {
           console.log("response", response);
         });
       })
+
       .catch((error) => {
         console.log("Entry Error", error);
       });
   }
-
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            name="event"
+            placeholder="Event"
+            value={this.state.event}
+            onChange={this.handleChange}
+            required
+          />
+
           <input
             type="text"
             name="date"
@@ -62,17 +73,9 @@ export default class Journal extends Component {
 
           <input
             type="text"
-            name="title"
-            placeholder="Title"
-            value={this.state.title}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="entry"
-            placeholder="Entry"
-            value={this.state.entry}
+            name="time"
+            placeholder="Time"
+            value={this.state.time}
             onChange={this.handleChange}
             required
           />

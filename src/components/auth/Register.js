@@ -15,7 +15,6 @@ class Register extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick = () => {
@@ -49,7 +48,7 @@ class Register extends Component {
       .then((response) => {
         response.json().then((response) => {
           console.log("response", response);
-          this.props.updateToken(response.sessionToken);
+          this.props.setToken(response.sessionToken);
           this.handleClick();
         });
       })
@@ -60,6 +59,18 @@ class Register extends Component {
   render() {
     return (
       <div>
+        <h1>Registration</h1>
+        <h6>
+          orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+          ligula ante, feugiat nec tristique at, hendrerit ultricies mi. In
+          libero orci, sodales fermentum nibh et, rhoncus dapibus purus. Vivamus
+          a tincidunt magna. Aliquam nec ultricies massa. Mauris sit amet
+          feugiat tellus, ac vestibulum tortor. Maecenas ac diam porta, commodo
+          metus ac, porta ligula. Aenean ut semper felis. Nunc nec laoreet mi.
+          Integer felis lectus, luctus eu eros tristique, consequat luctus elit.
+          Aliquam eu eros pharetra turpis tincidunt semper. Nullam congue tortor
+          et justo venenatis molestie.
+        </h6>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
