@@ -74,7 +74,6 @@ export default class JournalIndex extends Component {
     e.preventDefault();
     fetch(`http://localhost:3000/journal/${journalId}`, {
       method: "DELETE",
-      // body: JSON.stringify({ journal: { id: event.target.id } }),
       headers: new Headers({
         "Content-Type": "application/json",
         Authorization: this.props.token,
@@ -87,18 +86,16 @@ export default class JournalIndex extends Component {
   };
 
   render() {
-    // const entries =
-    //   this.state.entries.length >= 1 ? (
-    //   ) : (
-    //     <div></div>
-    //   );
     return (
       <div>
-        <h1>Hello from Journal Page</h1>
+        <h1>Journal</h1>
+        <hr />
+
         <JournalCreate
           token={this.props.token}
           updateEntriesArray={this.fetchEntries}
         />
+
         <JournalEntries
           entries={this.state.entries}
           delete={this.entryDelete}
@@ -108,7 +105,6 @@ export default class JournalIndex extends Component {
         {this.state.updatePressed ? (
           <JournalEdit
             modalOpen={this.state.updatePressed}
-            // updatedEntry={this.updatedEntry}
             update={this.handleUpdate}
             entry={this.state.entryToUpdate}
           />

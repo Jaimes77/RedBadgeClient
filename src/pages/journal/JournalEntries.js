@@ -1,10 +1,8 @@
 import React from "react";
 
 const JournalEntries = (props) => {
-  // console.log(props);
   return (
     <div>
-      <h1>Journal Entries</h1>
       <hr />
       <table>
         <thead>

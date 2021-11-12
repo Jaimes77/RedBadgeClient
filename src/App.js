@@ -67,10 +67,10 @@ export default class App extends Component {
               <JournalIndex token={this.state.sessionToken} />
             </Route>
             <Route exact path={"/meds"}>
-              <MedsIndex token={this.sessionToken} />
+              <MedsIndex token={this.state.sessionToken} />
             </Route>
             <Route exact path={"/calendar"}>
-              <CalendarIndex token={this.sessionToken} />
+              <CalendarIndex token={this.state.sessionToken} />
             </Route>
           </Switch>
         </Router>
