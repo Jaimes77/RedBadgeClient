@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 // import { browserHistory } from "react-router";
 
 class Login extends Component {
@@ -15,12 +15,9 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // handleClick = () => browserHistory.push("/journal");
-
-  // handleClick = (event) => {
-  //   event.preventDefault();
-  //   this.props.history.push("/journal");
-  // };
+  handleClick = () => {
+    this.props.history.push("/journal");
+  };
 
   handleChange(event) {
     this.setState({
@@ -46,7 +43,8 @@ class Login extends Component {
       .then((response) => {
         response.json().then((response) => {
           console.log("response", response);
-          this.props.updateToken(response.sessionToken);
+          this.props.setToken(response.sessionToken);
+          this.handleClick();
         });
       })
       .catch((error) => {
@@ -56,6 +54,19 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <h1>Welcome Back</h1>
+        <h6>
+          orem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+          ligula ante, feugiat nec tristique at, hendrerit ultricies mi. In
+          libero orci, sodales fermentum nibh et, rhoncus dapibus purus. Vivamus
+          a tincidunt magna. Aliquam nec ultricies massa. Mauris sit amet
+          feugiat tellus, ac vestibulum tortor. Maecenas ac diam porta, commodo
+          metus ac, porta ligula. Aenean ut semper felis. Nunc nec laoreet mi.
+          Integer felis lectus, luctus eu eros tristique, consequat luctus elit.
+          Aliquam eu eros pharetra turpis tincidunt semper. Nullam congue tortor
+          et justo venenatis molestie.
+        </h6>
+
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -81,6 +92,4 @@ class Login extends Component {
   }
 }
 
-// export default withRouter(Login);
-// export default browserHistory(Login);
-export default Login;
+export default withRouter(Login);

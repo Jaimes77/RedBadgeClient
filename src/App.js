@@ -1,71 +1,85 @@
 import React, { Component } from "react";
-// import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 import Auth from "./components/auth/Auth";
-import Journal from "./pages/Journal";
-import Calendar from "./pages/Calendar";
-import Meds from "./pages/Meds";
+import JournalIndex from "./pages/journal/JournalIndex";
+import CalendarIndex from "./pages/calendar/CalendarIndex";
+import MedsIndex from "./pages/meds/MedsIndex";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
+    const token = localStorage.getItem("token");
 
     this.state = {
-      sessionToken: "",
+      sessionToken: token || "",
     };
   }
 
-  updateToken = (newToken) => {
-    localStorage.setItem("token", newToken);
-    this.setState({ sessionToken: newToken });
+  // componentDidMount() {
+  //   if (token && !this.state.sessionToken) {
+  //     this.setState({ sessionToken: token });
+  //   }
+  // }
+
+  setSessionState = (token) => {
+    localStorage.setItem("token", token);
+    this.setState({ sessionToken: token });
   };
 
+  logout = () => {
+    this.setState({
+      sessionToken: "",
+    });
+    localStorage.clear();
+  };
+
+  // protectedViews = () => {
+  //   if (this.state.sessionToken === localStorage.getItem("token")) {
+  //     return (
+  //       <Switch>
+  //         <Route path="/" exact>
+  //           <JournalIndex sessionToken={this.state.sessionToken} />
+  //         </Route>
+  //       </Switch>
+  //     );
+  //   } else {
+  //     return (
+  //       <Route path="/auth">
+  //         <Auth setToken={this.setSessionState} />
+  //       </Route>
+  //     );
+  //   }
+  // };
+
   render() {
+    // if (this.state.sessionToken) return null;
+
     return (
-      <div className="app">
+      <Container>
         <Router>
           <Switch>
+            {/* {this.protectedViews()} */}
             <Route exact path="/">
-              <Auth updateToken={this.updateToken} />
+              <Auth setToken={this.setSessionState} />
             </Route>
             <Route exact path={"/journal"}>
-              <Journal updateToken={this.sessionToken} />
+              <JournalIndex token={this.state.sessionToken} />
             </Route>
-            <Route exact path={"/meds"} component={Meds} />
-            <Route exact path={"/calendar"} component={Calendar} />
+            <Route exact path={"/meds"}>
+              <MedsIndex token={this.sessionToken} />
+            </Route>
+            <Route exact path={"/calendar"}>
+              <CalendarIndex token={this.sessionToken} />
+            </Route>
           </Switch>
         </Router>
-      </div>
+      </Container>
     );
   }
 }
 
-// function App() {
-//   const [sessionToken, setSessionToken] = useState("");
-
-//   useEffect(() => {
-//     if (localStorage.getItem("token")) {
-//       setSessionToken(localStorage.getItem("token"));
-//     }
-//   }, []);
-
-//   return (
-//     <div>
-//       <Router>
-//         <Switch>
-//           <Route exact path="/">
-//             <Auth token={updateToken} />
-//           </Route>
-
-//           <Route exact path={"/journal"}>
-//             <Journal token={sessionToken} />
-//           </Route>
-//           <Route exact path={"/meds"} component={Meds} />
-//           <Route exact path={"/calendar"} component={Calendar} />
-//         </Switch>
-//       </Router>
-//     </div>
-//   );
-// }
-
-// export default App;
+const Container = styled.div`
+  background: #007090;
+  height: 100vh;
+`;
