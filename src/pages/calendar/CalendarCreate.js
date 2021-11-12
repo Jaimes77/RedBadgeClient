@@ -22,25 +22,26 @@ export default class CalendarCreate extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const token = localStorage.getItem("token");
 
     fetch(`http://localhost:3000/calendar/create`, {
       method: "POST",
       body: JSON.stringify({
-        calendar: {
-          event: this.state.event,
-          date: this.state.date,
-          time: this.state.time,
-        },
+        calendar: this.state,
       }),
 
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: this.props.token,
       }),
     })
       .then((response) => {
         response.json().then((response) => {
+          this.props.updateScheduleArray();
+          this.setState({
+            event: "",
+            date: "",
+            time: "",
+          });
           console.log("response", response);
         });
       })

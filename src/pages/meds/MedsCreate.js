@@ -20,25 +20,24 @@ export default class Meds extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const token = localStorage.getItem("token");
-
     fetch(`http://localhost:3000/meds/create`, {
       method: "POST",
       body: JSON.stringify({
-        meds: {
-          medname: this.state.medname,
-          dose: this.state.dose,
-          frequency: this.state.frequency,
-        },
+        meds: this.state,
       }),
-
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: this.props.token,
       }),
     })
       .then((response) => {
         response.json().then((response) => {
+          this.props.updateListArray();
+          this.setState({
+            medname: "",
+            dose: "",
+            frequency: "",
+          });
           console.log("response", response);
         });
       })

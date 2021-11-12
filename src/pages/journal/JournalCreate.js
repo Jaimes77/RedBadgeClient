@@ -33,7 +33,7 @@ export default class JournalCreate extends Component {
       }),
     })
       .then((response) => {
-        response.json().then((logEntries) => {
+        response.json().then((response) => {
           this.props.updateEntriesArray();
           this.setState({
             date: "",
