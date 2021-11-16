@@ -48,7 +48,7 @@ export default class Meds extends Component {
   }
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form>
         <input
           type="text"
           name="medname"
@@ -76,7 +76,9 @@ export default class Meds extends Component {
           required
         />
         <br />
-        <Button type="submit">Post</Button>
+        <Button type="submit" onClick={this.handleSubmit}>
+          Post
+        </Button>
       </Form>
     );
   }
@@ -93,20 +95,10 @@ const Form = styled.div`
     justify-content: center;
     width: 25vh;
     height: 42px;
-    border: black;
-    // border-radius: 5px;
     padding: 0px 10px;
     font-size: 12px;
     color: black;
 
-    &:placeholder {
-      color: black;
-    }
-    
-    &:focus {
-      outline: none;
-      border-bottom: 2px solid rgb(241, 196, 15);
-    }
   
 `;
 

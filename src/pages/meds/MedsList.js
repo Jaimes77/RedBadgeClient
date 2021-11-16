@@ -21,7 +21,7 @@ const MedsList = (props) => {
               <TD>{med.dose}</TD>
               <TD>{med.frequency}</TD>
               <TD>
-                <Button onClick={(e) => props.update(e, med)}>Update</Button>
+                <Button onClick={(e) => props.update(e, med)}>Edit</Button>
               </TD>
               <TD>
                 <Button onClick={(e) => props.delete(e, med.id)}>Delete</Button>

@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const MedsNavbar = () => {
+  const logout = () => {
+    localStorage.clear();
+  };
+
   return (
     <Nav>
       <Logo href="#">
@@ -15,7 +19,7 @@ const MedsNavbar = () => {
         <Link to="/calendar" style={linkStyle}>
           Calendar
         </Link>
-        <Link to="/" style={linkStyle}>
+        <Link to="/" onClick={() => logout()} style={linkStyle}>
           Logout
         </Link>
       </Menu>

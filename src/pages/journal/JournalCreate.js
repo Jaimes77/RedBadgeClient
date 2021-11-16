@@ -51,7 +51,7 @@ export default class JournalCreate extends Component {
 
   render() {
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <input
           type="text"
           name="date"
@@ -98,21 +98,9 @@ const Form = styled.div`
     justify-content: center;
     width: 25vh;
     height: 42px;
-    border: black;
-    // border-radius: 5px;
     padding: 0px 10px;
     font-size: 12px;
-    color: black;
-
-    &:placeholder {
-      color: black;
-    }
-    
-    &:focus {
-      outline: none;
-      border-bottom: 2px solid rgb(241, 196, 15);
-    }
-  
+    color: black;    
 `;
 
 const Button = styled.button`
