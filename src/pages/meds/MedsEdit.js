@@ -37,7 +37,7 @@ export default class MedsEdit extends Component {
 
   render() {
     const { modalOpen } = this.props;
-
+    const { modalClose } = this.props;
     return (
       <>
         {modalOpen ? (
@@ -71,6 +71,9 @@ export default class MedsEdit extends Component {
                 />
 
                 <button type="submit">Edit</button>
+                <button type="submit" onClick={modalClose}>
+                  Close
+                </button>
               </form>
             </Modal>
           </ModalBackground>

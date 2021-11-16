@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import MedsCreate from "./MedsCreate";
 import MedsList from "./MedsList";
 import MedsEdit from "./MedsEdit";
@@ -84,7 +85,7 @@ export default class MedsIndex extends Component {
   };
   render() {
     return (
-      <div>
+      <Container>
         <h1>Medicine</h1>
         <hr />
 
@@ -103,7 +104,15 @@ export default class MedsIndex extends Component {
             med={this.state.medToUpdate}
           />
         ) : null}
-      </div>
+      </Container>
     );
   }
 }
+
+const Container = styled.div`
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+  }
+`;

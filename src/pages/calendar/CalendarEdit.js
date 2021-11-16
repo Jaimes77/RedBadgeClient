@@ -37,6 +37,7 @@ export default class CalendarEdit extends Component {
 
   render() {
     const { modalOpen } = this.props;
+    const { modalClose } = this.props;
 
     return (
       <>
@@ -71,6 +72,9 @@ export default class CalendarEdit extends Component {
                 />
 
                 <button type="submit">Edit</button>
+                <button type="submit" onClick={modalClose}>
+                  Close
+                </button>
               </form>
             </Modal>
           </ModalBackground>
