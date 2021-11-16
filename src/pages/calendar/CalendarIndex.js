@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import CalendarCreate from "./CalendarCreate";
 import CalendarAppts from "./CalendarAppts";
 import CalendarEdit from "./CalendarEdit";
@@ -86,7 +87,7 @@ export default class CalendarIndex extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h1>Appointments</h1>
         <hr />
 
@@ -108,7 +109,15 @@ export default class CalendarIndex extends Component {
             appt={this.state.apptToUpdate}
           />
         ) : null}
-      </div>
+      </Container>
     );
   }
 }
+
+const Container = styled.div`
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+  }
+`;

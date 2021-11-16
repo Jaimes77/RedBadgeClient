@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 export default class JournalCreate extends Component {
   constructor(props) {
@@ -50,37 +51,89 @@ export default class JournalCreate extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="date"
-            placeholder="Date"
-            value={this.state.date}
-            onChange={this.handleChange}
-            required
-          />
+      <Form>
+        <input
+          type="text"
+          name="date"
+          placeholder="Date"
+          value={this.state.date}
+          onChange={this.handleChange}
+          required
+        />
 
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            value={this.state.title}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="entry"
-            placeholder="Entry"
-            value={this.state.entry}
-            onChange={this.handleChange}
-            required
-          />
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          value={this.state.title}
+          onChange={this.handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="entry"
+          placeholder="Entry"
+          value={this.state.entry}
+          onChange={this.handleChange}
+          required
+        />
+        <br />
 
-          <button type="submit">Post</button>
-        </form>
-      </div>
+        <Button type="submit" onClick={this.handleSubmit}>
+          Post
+        </Button>
+      </Form>
     );
   }
 }
+
+const Form = styled.div`
+  width: 13vw;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  input {
+    display:flex;
+    justify-content: center;
+    width: 25vh;
+    height: 42px;
+    border: black;
+    // border-radius: 5px;
+    padding: 0px 10px;
+    font-size: 12px;
+    color: black;
+
+    &:placeholder {
+      color: black;
+    }
+    
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid rgb(241, 196, 15);
+    }
+  
+`;
+
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  margin-left: 50px;
+  width: 5vw;
+  padding: 5px 50px;
+  font-size: 15px;
+  font-weight: 750;
+  border: none;
+  border-radius: 50px 50px 50px 50px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background: rgb(241, 196, 15);
+  background: linear-gradient(
+    58deg,
+    rgba(241, 196, 15, 1) 20%,
+    rgba(243, 172, 18, 1) 100%
+  );
+  &:hover {
+    filter: brightness(3);
+  }
+`;

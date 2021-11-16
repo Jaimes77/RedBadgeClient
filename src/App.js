@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import Auth from "./components/auth/Auth";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import JournalNavbar from "./pages/journal/JournalNavbar";
 import JournalIndex from "./pages/journal/JournalIndex";
+import CalendarNavbar from "./pages/calendar/CalendarNavbar";
 import CalendarIndex from "./pages/calendar/CalendarIndex";
+import MedsNavbar from "./pages/meds/MedsNavbar";
 import MedsIndex from "./pages/meds/MedsIndex";
 
 export default class App extends Component {
@@ -15,12 +20,6 @@ export default class App extends Component {
       sessionToken: token || "",
     };
   }
-
-  // componentDidMount() {
-  //   if (token && !this.state.sessionToken) {
-  //     this.setState({ sessionToken: token });
-  //   }
-  // }
 
   setSessionState = (token) => {
     localStorage.setItem("token", token);
@@ -63,13 +62,22 @@ export default class App extends Component {
             <Route exact path="/">
               <Auth setToken={this.setSessionState} />
             </Route>
+            <Route exact path="/register">
+              <Register setToken={this.setSessionState} />
+            </Route>
+            <Route exact path="/login">
+              <Login setToken={this.setSessionState} />
+            </Route>
             <Route exact path={"/journal"}>
+              <JournalNavbar />
               <JournalIndex token={this.state.sessionToken} />
             </Route>
             <Route exact path={"/meds"}>
+              <MedsNavbar />
               <MedsIndex token={this.state.sessionToken} />
             </Route>
             <Route exact path={"/calendar"}>
+              <CalendarNavbar />
               <CalendarIndex token={this.state.sessionToken} />
             </Route>
           </Switch>

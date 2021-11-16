@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import JournalEntries from "./JournalEntries";
 import JournalCreate from "./JournalCreate";
 import JournalEdit from "./JournalEdit";
@@ -87,7 +88,7 @@ export default class JournalIndex extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h1>Journal</h1>
         <hr />
 
@@ -95,6 +96,7 @@ export default class JournalIndex extends Component {
           token={this.props.token}
           updateEntriesArray={this.fetchEntries}
         />
+        <br />
 
         <JournalEntries
           entries={this.state.entries}
@@ -109,7 +111,15 @@ export default class JournalIndex extends Component {
             entry={this.state.entryToUpdate}
           />
         ) : null}
-      </div>
+      </Container>
     );
   }
 }
+
+const Container = styled.div`
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+  }
+`;
