@@ -44,8 +44,23 @@ export default class JournalEdit extends Component {
         {modalOpen ? (
           <ModalBackground>
             <Modal>
-              <form onSubmit={this.handleSubmit}>
+              <form
+                onSubmit={this.handleSubmit}
+                style={{
+                  width: "44vw",
+                  height: "40vh",
+                  paddingRight: "50px",
+                  paddingLeft: "50px",
+                  backgroundColor: "white",
+                }}
+              >
                 <input
+                  style={{
+                    border: "1px black solid",
+                    width: "10vw",
+                    height: "5vh",
+                    margin: "55px 0px",
+                  }}
                   type="text"
                   name="date"
                   placeholder="Date"
@@ -55,6 +70,7 @@ export default class JournalEdit extends Component {
                 />
 
                 <input
+                  style={{ width: "10vw", height: "5vh", margin: " 0px 55px " }}
                   type="text"
                   name="title"
                   placeholder="Title"
@@ -63,6 +79,7 @@ export default class JournalEdit extends Component {
                   required
                 />
                 <input
+                  style={{ width: "10vw", height: "5vh", margin: "45px" }}
                   type="text"
                   name="entry"
                   placeholder="Entry"
@@ -70,9 +87,30 @@ export default class JournalEdit extends Component {
                   onChange={this.handleChange}
                   required
                 />
+                <br />
 
-                <button type="submit">Edit</button>
-                <button type="submit" onClick={modalClose}>
+                <button
+                  type="submit"
+                  style={{
+                    margin: "50px  50px 250px 250px",
+                    background: "rgb(241, 196, 15)",
+                    border: "0",
+                    borderRadius: "35px",
+                    width: "10%",
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  type="submit"
+                  onClick={modalClose}
+                  style={{
+                    background: "rgb(241, 196, 15)",
+                    border: "0",
+                    borderRadius: "35px",
+                    width: "10%",
+                  }}
+                >
                   Close
                 </button>
               </form>
@@ -90,7 +128,7 @@ const Modal = styled.div`
   padding: 24px;
   left: 25%;
   top: 25%;
-  background: white;
+  background: rgb(241, 196, 15);
   z-index: 1;
 `;
 

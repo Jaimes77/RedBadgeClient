@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
+import AuthNavbar from "./components/auth/AuthNavbar";
 import Auth from "./components/auth/Auth";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -19,6 +20,8 @@ export default class App extends Component {
     this.state = {
       sessionToken: token || "",
     };
+
+    // this.logout = this.logout.bind(this);
   }
 
   setSessionState = (token) => {
@@ -26,40 +29,13 @@ export default class App extends Component {
     this.setState({ sessionToken: token });
   };
 
-  logout = () => {
-    this.setState({
-      sessionToken: "",
-    });
-    localStorage.clear();
-  };
-
-  // protectedViews = () => {
-  //   if (this.state.sessionToken === localStorage.getItem("token")) {
-  //     return (
-  //       <Switch>
-  //         <Route path="/" exact>
-  //           <JournalIndex sessionToken={this.state.sessionToken} />
-  //         </Route>
-  //       </Switch>
-  //     );
-  //   } else {
-  //     return (
-  //       <Route path="/auth">
-  //         <Auth setToken={this.setSessionState} />
-  //       </Route>
-  //     );
-  //   }
-  // };
-
   render() {
-    // if (this.state.sessionToken) return null;
-
     return (
       <Container>
         <Router>
           <Switch>
-            {/* {this.protectedViews()} */}
-            <Route exact path="/">
+            <Route exact path="/" component={AuthNavbar} />
+            <Route exact path="/auth">
               <Auth setToken={this.setSessionState} />
             </Route>
             <Route exact path="/register">
