@@ -48,7 +48,7 @@ class Register extends Component {
     }
 
     if (this.state.password.length < 6) {
-      passwordError = "invalid password";
+      passwordError = "password must be atleast 6 characters";
     }
     if (emailError || usernameError || passwordError) {
       this.setState({ emailError, usernameError, passwordError });
@@ -65,7 +65,7 @@ class Register extends Component {
       this.setState(initialState);
     }
 
-    fetch(`http://localhost:3000/user/create`, {
+    fetch(`$(APIURL)/user/create`, {
       method: "POST",
       body: JSON.stringify({
         user: {

@@ -23,7 +23,7 @@ export default class JournalCreate extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/journal/create`, {
+    fetch(`$(APIURL)/journal/create`, {
       method: "POST",
       body: JSON.stringify({
         journal: this.state,

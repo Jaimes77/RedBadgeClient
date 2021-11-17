@@ -21,7 +21,7 @@ export default class CalendarIndex extends Component {
 
   handleUpdate(event, appt) {
     event.preventDefault();
-    fetch(`http://localhost:3000/calendar/${this.state.apptToUpdate.id}`, {
+    fetch(`$(APIURL)/calendar/${this.state.apptToUpdate.id}`, {
       method: "PUT",
       body: JSON.stringify({
         calendar: appt,
