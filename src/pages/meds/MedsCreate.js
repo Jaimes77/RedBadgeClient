@@ -21,7 +21,7 @@ export default class Meds extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch(`http://localhost:3000/meds/create`, {
+    fetch(`$(APIURL)/meds/create`, {
       method: "POST",
       body: JSON.stringify({
         meds: this.state,
