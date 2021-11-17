@@ -21,7 +21,7 @@ export default class MedsIndex extends Component {
 
   handleUpdate(event, med) {
     event.preventDefault();
-    fetch(`http://localhost:3000/meds/${med.id}`, {
+    fetch(`$(APIURL)/meds/${med.id}`, {
       method: "PUT",
       body: JSON.stringify({
         meds: med,

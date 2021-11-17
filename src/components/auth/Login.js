@@ -29,7 +29,7 @@ class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/user/login`, {
+    fetch(`$(APIURL)/user/login`, {
       method: "POST",
       body: JSON.stringify({
         user: {

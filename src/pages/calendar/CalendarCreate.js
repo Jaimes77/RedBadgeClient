@@ -24,7 +24,7 @@ export default class CalendarCreate extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/calendar/create`, {
+    fetch(`$(APIURL)/calendar/create`, {
       method: "POST",
       body: JSON.stringify({
         calendar: this.state,

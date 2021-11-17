@@ -21,7 +21,7 @@ export default class JournalIndex extends Component {
 
   handleUpdate(event, entry) {
     event.preventDefault();
-    fetch(`http://localhost:3000/journal/${entry.id}`, {
+    fetch(`$(APIURL)/journal/${entry.id}`, {
       method: "PUT",
       body: JSON.stringify({
         journal: entry,

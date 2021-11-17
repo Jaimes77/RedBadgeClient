@@ -22,14 +22,13 @@ export default function AuthNavbar() {
       </Nav>
 
       <Split>
-        {/* <SplitTitle>Caregiver</SplitTitle> */}
         <div>
           <SplitImg src={caregiver} alt="" />
         </div>
         <h1>
           noun|\'ker-gi-ver\ 1: one who gives the tremendous gift of love and
           aid to another <br />
-          2: symbol of strenght and dedication
+          2: symbol of strength and dedication
         </h1>
       </Split>
     </Container>
